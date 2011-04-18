@@ -40,6 +40,7 @@ if(!class_exists('PunchTab')) :
 			$this->options = array();
 			// set default options
 			$this->options['key'] = '';
+			$this->options['url'] = '';
 			$this->options['xpos'] = 'left';
 			$this->options['ypos'] = 'bottom';
 			
@@ -110,7 +111,7 @@ if(!class_exists('PunchTab')) :
 				$key = $options['key'];
 				$xpos = $options['xpos'];
 				$ypos = $options['ypos'];
-				$url = str_replace("http://","",get_bloginfo('url'));
+				$url = $options['url'];
 				$this->show_punchtab_js($key,$url,$xpos,$ypos);
 			}
 		}
