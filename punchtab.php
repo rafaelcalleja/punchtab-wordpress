@@ -40,7 +40,6 @@ if(!class_exists('PunchTab')) :
 			$this->options = array();
 			// set default options
 			$this->options['key'] = '';
-			$this->options['url'] = '';
 			$this->options['xpos'] = 'left';
 			$this->options['ypos'] = 'bottom';
 			
@@ -111,11 +110,10 @@ if(!class_exists('PunchTab')) :
 				$key = $options['key'];
 				$xpos = $options['xpos'];
 				$ypos = $options['ypos'];
-				$url = $options['url'];
-				$this->show_punchtab_js($key,$url,$xpos,$ypos);
+				$this->show_punchtab_js($key,$xpos,$ypos);
 			}
 		}
-		public function show_punchtab_js($key="",$url="",$xpos="",$ypos="")
+		public function show_punchtab_js($key="",$xpos="",$ypos="")
 		{
 			echo '              <script type="text/javascript" charset="utf-8">
               var is_ssl = ("https:" == document.location.protocol);
@@ -126,7 +124,6 @@ if(!class_exists('PunchTab')) :
               <script type="text/javascript" charset="utf-8">
               var _ptq = _ptq || [];
               var reward_widget_options = {};
-              reward_widget_options.domain = "' . $url . '";
               reward_widget_options.key = "' . $key . '";
               reward_widget_options.host = "www.punchtab.com";
               reward_widget_options.position = {x:"' . $xpos . '",y:"' . $ypos . '"};

@@ -13,10 +13,6 @@
         <td width="366"><input name="<?php echo $this->plugin_id; ?>[key]" type="text" value="<?php echo $options['key']; ?>" size="40" /></td>
     </tr>
     <tr>
-        <td width="144" height="26" align="right"><label for="<?php echo $this->plugin_id; ?>[url]">Domain</label> </td>
-        <td width="366"><input name="<?php echo $this->plugin_id; ?>[url]" type="text" value="<?php echo $options['url']; ?>" size="40" /></td>
-    </tr>
-    <tr>
         <td width="144" height="26" align="right"><label for="<?php echo $this->plugin_id; ?>[xpos]">X Pos (left | right)</label> </td>
         <td width="366"><input name="<?php echo $this->plugin_id; ?>[xpos]" type="text" value="<?php echo $options['xpos']; ?>" size="40" /></td>
     </tr>
