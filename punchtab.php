@@ -1,11 +1,11 @@
 <?php
 /*
-Plugin Name: PunchTab for WordPress
-Plugin URI: http://punchtab.com
-Description: PunchTab rewards for WordPress lets you reward your users for daily visits, Facebook Likes, and leaving comments on your blog. To get started: 1) Get your key by registering your site at <a href="http://www.punchtab.com">PunchTab.com</a>, 2) Enter your key and choose tab placement from the <a href='options-general.php?page=punchtab-plugin'>Settings->PunchTab</a> menu, and 3) Click on the Activate link to the left of this description. To put your own rewards in your catalog log into your <a href="http://www.punchtab.com">PunchTab Dashboard</a>.
-Version: 1.01
-Author: Ranjith Kumaran
-Author URI: http://punchtab.com
+    Plugin Name: PunchTab for WordPress
+    Plugin URI: http://punchtab.com
+    Description: PunchTab rewards for WordPress lets you reward your users for daily visits, Facebook Likes, and leaving comments on your blog. To get started: 1) Get your key by registering your site at <a href="http://www.punchtab.com">PunchTab.com</a>, 2) Enter your key and choose tab placement from the <a href='options-general.php?page=punchtab-plugin'>Settings->PunchTab</a> menu, and 3) Click on the Activate link to the left of this description. To put your own rewards in your catalog log into your <a href="http://www.punchtab.com">PunchTab Dashboard</a>.
+    Version: 1.01
+    Author: PunchTab
+    Author URI: http://punchtab.com
 */
 
 // Version check
@@ -151,15 +151,6 @@ if(!class_exists('PunchTab')) :
 		public function comment_reward($comment)
 		{			
       		setcookie("comment_posted", 1, time()+3600, COOKIEPATH, COOKIE_DOMAIN);
-		}
-		/** function/method
-		* Usage: alert the user
-		* Arg(1): string (message)
-		* Return: void
-		*/
-		public function js_alert($msg)
-		{
-			echo '<script type="text/javascript">alert("'.$msg.'");</script>';
 		}
 		/** function/method
 		* Usage: helper for hooking (registering) options
