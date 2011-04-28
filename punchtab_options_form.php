@@ -13,6 +13,10 @@
         <td width="366"><input name="<?php echo $this->plugin_id; ?>[key]" type="text" value="<?php echo $options['key']; ?>" size="40" /></td>
     </tr>
     <tr>
+        <td width="144" height="16" align="right"></td>
+        <td width="366"><p style="margin-top:3px;font-size:10px;">Signup at <a href="http://www.punchtab.com" target="_blank">PunchTab</a>, if you don't already have a key.</p></td>
+    </tr>
+    <tr>
         <td width="144" height="26" align="right"><label for="<?php echo $this->plugin_id; ?>[xpos]">X Pos (left | right)</label> </td>
         <td width="366"><input name="<?php echo $this->plugin_id; ?>[xpos]" type="text" value="<?php echo $options['xpos']; ?>" size="40" /></td>
     </tr>
