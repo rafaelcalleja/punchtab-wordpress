@@ -5,55 +5,50 @@ Requires at least: 3.0
 Tested up to: 3.1.2
 Stable tag: 1.2
 
-PunchTab is a loyalty program for your wordpress blog. It rewards your visitors for visits, comments and social sharing.
+PunchTab is a loyalty program for your WordPress blog. It lets you reward your readers for visits, comments, and social sharing.
 
 == Description ==
 
-PunchTab is a loyalty program really simple to install on your wordpress blog.
-As soon as it's installed, your blog will show a reward section. Your users will be able to connect with facebook and earn points for their actions on your blog.
+PunchTab is a loyalty program that's simple to install on your WordPress blog.
+As soon as it's installed, a rewards section will show up on your site. Your readers will be able to connect with Facebook and earn points for their actions on your blog.
 
-PunchTab will help you *engage* your current users with more repeat visits, facebook likes and comments.
+PunchTab incentivizes your readers to invite their friends to check out your blog and will help you *engage* your current users with more repeat visits, Facebook likes and comments.
 
-Some features for your users:
+Key features for your readers:
 
-*   User connect with facebook.
-*   User earn 100 points for daily visits.
-*   User earn 100 points for daily comments.
-*   User earn 100 points for facebook likes.
-*   User compete to be at the top of the leaderboard.
-*   User redeem their points against quality offers.
+*   Readers connect to your loyalty program with Facebook.
+*   Readers earn loyalty points for daily visits.
+*   Readers earn loyalty points for daily comments.
+*   Readers earn loyalty points for Facebook likes.
+*   Readers compete to be at the top of your loyalty leaderboard.
+*   Readers redeem their points for quality gift cards and offers.
 
+Key features for you:
 
-Some features for your:
-
-*   You can customize the rewards on www.punchtab.com.
-*   You can see the leaderboard of your users.
-*   You can track usage of your website, and the action taken by each users.
+*   Customize the rewards you offer.
+*   Keep track of recent and trending social actions on your blog.
+*   Keep track of actions taken by each reader and learn more about them.
 
 
 == Installation ==
 
 This section describes how to install the plugin and get it working.
 
-
-1. You can either use the automatic plugin installer or your FTP program to upload it to your wp-content/plugins directory
-the top-level folder. Don't just upload all the php files and put them in `/wp-content/plugins/`.
+1. You can either use the automatic plugin installer or your FTP program to upload plugin files to your wp-content/plugins/punchtab directory. Make sure the source files reside in this directory. 
 1. Activate the plugin through the 'Plugins' menu in WordPress
 1. Visit your PunchTab options (*Options - PunchTab*) for Wordpress 2.3.x, (*Settings - PunchTab*) for Wordpress 2.5.x-2.8.x 
-1. Set up the key you got from http://www.punchtab.com/
-1. Configure any other option if needed.
-1. That's it!
+1. Paste the key you received from http://www.punchtab.com/ or get it from you PunchTab.com dashboard.
+1. Configure other options if needed (including location of the rewards tab).
+1. Test your installation by logging out of Facebook and visiting your blog.
 
 == Frequently Asked Questions ==
 
-You can find the FAQ and support **[here](http://feedback.punchtab.com/knowledgebase)**
+You can find the FAQ and get support **[here](http://feedback.punchtab.com/knowledgebase)**
 
 == Screenshots ==
 
 1. Administration interface in WordPress 2.7
-2. Reward tab by default
-3. Reward tab on the top left corner
-4. Reward section opened
-5. Leaderboard
-6. Catalog of offers
-
+2. Reward tab on the bottom right corner
+3. Reward section opened
+4. Leaderboard
+5. Catalog of rewards (customizable)
