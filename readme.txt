@@ -48,7 +48,7 @@ You can find the FAQ and get support **[here](http://feedback.punchtab.com/knowl
 == Screenshots ==
 
 1. Administration interface in WordPress 2.7
-2. Reward tab on the bottom right corner
-3. Reward section opened
+2. Rewards tab on the bottom right corner
+3. Loyalty section opened
 4. Leaderboard
 5. Catalog of rewards (customizable)
