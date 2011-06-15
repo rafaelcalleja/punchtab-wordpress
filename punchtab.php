@@ -19,6 +19,31 @@ if(!version_compare($wp_version, '3.0', '>='))
 // Make sure class does not exist already.
 if(!class_exists('PunchTab')) :
 
+    class PunchTabWidget extends WP_Widget {
+        function PunchTabWidget() {
+            parent::WP_Widget(false, 'PunchTab Widget', array('description' => 'Description'));
+        }
+
+        function widget($args, $instance) {
+            echo '<div id="punchtab_widget"></div>';
+        }
+
+        function update( $new_instance, $old_instance ) {
+            // Save widget options
+            return parent::update($new_instance, $old_instance);
+        }
+
+        function form( $instance ) {
+            // Output admin widget options form
+            return parent::form($instance);
+        }
+        
+        
+    }
+    function punchtab_widget_register_widgets() {
+        register_widget('PunchtabWidget');
+    }
+    
     // Declare and define the plugin class.
 	class PunchTab
 	{	
@@ -42,6 +67,7 @@ if(!class_exists('PunchTab')) :
 			$this->options['key'] = '';
 			$this->options['xpos'] = 'left';
 			$this->options['ypos'] = 'bottom';
+            $this->options['display'] = 'tab';
 			
 			/*
 			* Add Hooks
@@ -56,6 +82,8 @@ if(!class_exists('PunchTab')) :
 			add_action('admin_init', array(&$this, 'init'));
 			// register the menu under settings
 			add_action('admin_menu', array(&$this, 'menu'));		
+            // Register sidebar widget
+            add_action('widgets_init', 'punchtab_widget_register_widgets');
 			/*
 			* END -Add Hooks
 			*/
@@ -71,7 +99,6 @@ if(!class_exists('PunchTab')) :
       		/*
 			* END -Process queued events
 			*/
-
 		}
 		
 		/** function/method
@@ -110,10 +137,11 @@ if(!class_exists('PunchTab')) :
 				$key = $options['key'];
 				$xpos = $options['xpos'];
 				$ypos = $options['ypos'];
-				$this->show_punchtab_js($key,$xpos,$ypos);
+                $display = $options['display'];
+				$this->show_punchtab_js($key,$xpos,$ypos,$display);
 			}
 		}
-		public function show_punchtab_js($key="",$xpos="",$ypos="")
+		public function show_punchtab_js($key="",$xpos="",$ypos="",$display="")
 		{
 			echo '              <script type="text/javascript" charset="utf-8">
               var is_ssl = ("https:" == document.location.protocol);
@@ -126,8 +154,11 @@ if(!class_exists('PunchTab')) :
               var reward_widget_options = {};
               reward_widget_options.key = "' . $key . '";
               reward_widget_options.host = "www.punchtab.com";
-              reward_widget_options.position = {x:"' . $xpos . '",y:"' . $ypos . '"};
-              var reward_widget = new PT.reward_widget(reward_widget_options);
+              reward_widget_options.display = "' . $display . '";';
+              if ($display == 'tab') {
+                  echo 'reward_widget_options.position = {x:"' . $xpos . '",y:"' . $ypos . '"};';
+              }
+              echo 'var reward_widget = new PT.reward_widget(reward_widget_options);
               </script>
 			';
 		}		
@@ -191,3 +222,4 @@ if(!class_exists('PunchTab')) :
 // END - class exists
 endif;
 ?>
+
