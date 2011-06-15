@@ -3,7 +3,7 @@
     Plugin Name: PunchTab for WordPress
     Plugin URI: http://punchtab.com
     Description: PunchTab rewards for WordPress lets you reward your users for daily visits, Facebook Likes, and leaving comments on your blog. To get started: 1) Get your key by registering your site at <a href="http://www.punchtab.com">PunchTab.com</a>, 2) Enter your key and choose tab placement from the <a href='options-general.php?page=punchtab-plugin'>Settings->PunchTab</a> menu, and 3) Click on the Activate link to the left of this description. To put your own rewards in your catalog log into your <a href="http://www.punchtab.com">PunchTab Dashboard</a>.
-    Version: 1.2
+    Version: 1.3
     Author: PunchTab
     Author URI: http://punchtab.com
 */
@@ -68,6 +68,7 @@ if(!class_exists('PunchTab')) :
 			$this->options['xpos'] = 'left';
 			$this->options['ypos'] = 'bottom';
             $this->options['display'] = 'tab';
+            $this->options['earningmap'] = 'on';
 			
 			/*
 			* Add Hooks
@@ -138,10 +139,11 @@ if(!class_exists('PunchTab')) :
 				$xpos = $options['xpos'];
 				$ypos = $options['ypos'];
                 $display = $options['display'];
-				$this->show_punchtab_js($key,$xpos,$ypos,$display);
+                $earningmap = $options['earningmap'] == 'on' ? 'true' : 'false';
+				$this->show_punchtab_js($key,$xpos,$ypos,$display,$earningmap);
 			}
 		}
-		public function show_punchtab_js($key="",$xpos="",$ypos="",$display="")
+		public function show_punchtab_js($key="",$xpos="",$ypos="",$display="",$earningmap='true')
 		{
 			echo '              <script type="text/javascript" charset="utf-8">
               var is_ssl = ("https:" == document.location.protocol);
@@ -154,11 +156,14 @@ if(!class_exists('PunchTab')) :
               var reward_widget_options = {};
               reward_widget_options.key = "' . $key . '";
               reward_widget_options.host = "www.punchtab.com";
+              reward_widget_options.earningmap = ' . $earningmap . ';
               reward_widget_options.display = "' . $display . '";';
-              if ($display == 'tab') {
+            echo "\n";
+            if ($display == 'tab') {
                   echo 'reward_widget_options.position = {x:"' . $xpos . '",y:"' . $ypos . '"};';
-              }
-              echo 'var reward_widget = new PT.reward_widget(reward_widget_options);
+                  echo "\n";
+            }
+            echo 'var reward_widget = new PT.reward_widget(reward_widget_options);
               </script>
 			';
 		}		

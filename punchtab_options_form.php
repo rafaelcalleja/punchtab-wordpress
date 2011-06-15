@@ -31,9 +31,9 @@
         <td width="144" height="26" align="right"><label for="<?php echo $this->plugin_id; ?>[ypos]">Y Pos (top | bottom)</label> </td>
         <td width="366"><input name="<?php echo $this->plugin_id; ?>[ypos]" type="text" value="<?php echo $options['ypos']; ?>" size="40" /></td>
     </tr>
-    <tr id="<?php echo $this->plugin_id; ?>_sidebar_instructions" style="display: none;">
-        <td width="144" height="26" align="right">Instructions:</td>
-        <td width="366"></td>
+    <tr>
+        <td width="144" height="26" align="right">Earning map</td>
+        <td width="366"><input type="checkbox" name="<?php echo $this->plugin_id; ?>[earningmap]" <?php if ($options['earningmap'] == 'on') echo 'checked="checked"'; ?> /></td>
     </tr>
     <tr>
         <td width="144" height="26" align="right"> </td>
@@ -47,15 +47,22 @@
 function show_sidebar() {
     document.getElementById('<?php echo $this->plugin_id; ?>[ypos]').style.display = 'none';
     document.getElementById('<?php echo $this->plugin_id; ?>[xpos]').style.display = 'none';
-    document.getElementById('<?php echo $this->plugin_id; ?>_sidebar_instructions').style.display = 'table-row';
 }
 function show_tab() {
     document.getElementById('<?php echo $this->plugin_id; ?>[ypos]').style.display = 'table-row';
     document.getElementById('<?php echo $this->plugin_id; ?>[xpos]').style.display = 'table-row';
-    document.getElementById('<?php echo $this->plugin_id; ?>_sidebar_instructions').style.display = 'none';
 }
 
 document.ready = function() {
+    <?php
+    if ($_GET['settings-updated'] && $options['display'] == 'inline') {
+    ?>
+    if (document.getElementById('setting-error-settings_updated')) {
+        document.getElementById('setting-error-settings_updated').innerHTML = '<p><strong>Settings saved</strong>. Activate the widget from the <a href="widgets.php">Widgets</a> settings page.';
+    }
+    <?php } ?>
+            
+        
     var radios = document.getElementsByName('<?php echo $this->plugin_id; ?>[display]');
     if (radios[0].checked == true) show_tab();
     else show_sidebar();
@@ -68,4 +75,6 @@ document.ready = function() {
     };
 }
 </script>
+
+
 
