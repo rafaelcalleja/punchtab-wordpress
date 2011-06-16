@@ -58,7 +58,7 @@ document.ready = function() {
     if ($_GET['settings-updated'] && $options['display'] == 'inline') {
     ?>
     if (document.getElementById('setting-error-settings_updated')) {
-        document.getElementById('setting-error-settings_updated').innerHTML = '<p><strong>Settings saved</strong>. Activate the widget from the <a href="widgets.php">Widgets</a> settings page.';
+        document.getElementById('setting-error-settings_updated').innerHTML = '<p><strong>Settings saved</strong>. Drag the PunchTab Widget from the <em>Available Widgets</em> section to a <em>Widget Area</em> on the <a href="widgets.php">Widgets</a> settings page.';
     }
     <?php } ?>
             
