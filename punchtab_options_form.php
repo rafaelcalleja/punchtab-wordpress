@@ -9,18 +9,21 @@
     <h2>PunchTab &raquo; Options</h2>
     <table width="550" border="0" cellpadding="5" cellspacing="5">
     <tr>
-        <td width="144" height="26" align="right"><label for="<?php echo $this->plugin_id; ?>[key]">Key</label> </td>
+        <td width="144" height="26" align="right" style="padding:0 30px 0 0;vertical-align: top;"><label style="font-weight:600" for="<?php echo $this->plugin_id; ?>[key]">Key:</label> </td>
         <td width="366"><input name="<?php echo $this->plugin_id; ?>[key]" type="text" value="<?php echo $options['key']; ?>" size="40" /></td>
     </tr>
     <tr>
         <td width="144" height="16" align="right"></td>
-        <td width="366"><p style="margin-top:3px;font-size:10px;">Signup at <a href="http://www.punchtab.com" target="_blank">PunchTab</a>, if you don't already have a key.</p></td>
+        <td width="366" style="border-bottom: 1px solid #CCC;padding:0 0 10px 0;"><p style="margin-top:3px;font-size:10px;">Signup at <a href="http://www.punchtab.com" target="_blank">PunchTab</a>, if you don't already have a key.</p></td>
     </tr>
     <tr>
-        <td width="144" height="26" align="right">Display:</td>
+        <td width="144" align="right" style="padding:0 30px 30px 0;vertical-align: top;"><label style="font-weight:600"><div>Display:</div></label></td>
         <td width="366">
-            <label>Tab<input name="<?php echo $this->plugin_id; ?>[display]" type="radio" value="tab" <?php if ($options['display'] == 'tab') echo 'checked="checked"'; ?> /></label>
-            <label>Sidebar Widget<input name="<?php echo $this->plugin_id; ?>[display]" type="radio" value="inline" <?php if ($options['display'] == 'inline') echo 'checked="checked"'; ?> /></label>
+            <div style="width:100%;float:left;margin-bottom:20px;">
+                <input name="<?php echo $this->plugin_id; ?>[display]" type="radio" value="tab" <?php if ($options['display'] == 'tab') echo 'checked="checked"'; ?> />
+                <label>Red Reward Tab</label>
+            </div>
+            <img style="float:left; padding: 0 0 30px 20px" width="200px" src="http://127.0.0.1:8000/s/img/position_bottom_left_visual_large.png"/>
         </td>
     </tr>
     <tr id="<?php echo $this->plugin_id; ?>[xpos]">
@@ -29,11 +32,26 @@
     </tr>
     <tr id="<?php echo $this->plugin_id; ?>[ypos]">
         <td width="144" height="26" align="right"><label for="<?php echo $this->plugin_id; ?>[ypos]">Y Pos (top | bottom)</label> </td>
-        <td width="366"><input name="<?php echo $this->plugin_id; ?>[ypos]" type="text" value="<?php echo $options['ypos']; ?>" size="40" /></td>
+        <td width="366" style="border-bottom: 1px solid #CCC;padding:0 0 10px 0;"><input name="<?php echo $this->plugin_id; ?>[ypos]" type="text" value="<?php echo $options['ypos']; ?>" size="40" /></td>
     </tr>
     <tr>
-        <td width="144" height="26" align="right">Earning map</td>
-        <td width="366"><input type="checkbox" name="<?php echo $this->plugin_id; ?>[earningmap]" <?php if ($options['earningmap'] == 'on') echo 'checked="checked"'; ?> /></td>
+        <td width="144" height="26" align="right"></td>
+        <td width="366" style="border-bottom: 1px solid #CCC;padding:0 0 10px 0;">
+            <div style="width:100%;float:left;margin-bottom:20px;">
+                <input name="<?php echo $this->plugin_id; ?>[display]" type="radio" value="inline" <?php if ($options['display'] == 'inline') echo 'checked="checked"'; ?> />
+                <label>Sidebar Widget</label>
+            </div>
+            <img style="float:left; margin: 0 0 0 20px" width="200px" src="http://127.0.0.1:8000/s/img/sidebar_widget_visual_large.png"/>
+        </td>
+    </tr>
+    <tr>
+        <td width="144" height="26" align="right" style="padding:0 30px 30px 0;vertical-align:top;"><span style="font-weight:600">Earning map:</span></td>
+        <td width="366" style="border-bottom: 1px solid #CCC;padding:0 0 10px 0;">
+            <div style="width:100%;float:left;margin-bottom:20px;">
+                <input type="checkbox" name="<?php echo $this->plugin_id; ?>[earningmap]" <?php if ($options['earningmap'] == 'on') echo 'checked="checked"'; ?> />
+            </div>
+            <img style="float:left; margin: 0 0 0 20px" width="200px" src="http://127.0.0.1:8000/s/img/sidebar_widget_visual_large.png"/>
+        </td>
     </tr>
     <tr>
         <td width="144" height="26" align="right"> </td>
