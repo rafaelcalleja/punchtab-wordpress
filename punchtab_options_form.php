@@ -50,7 +50,7 @@
             <div style="width:100%;float:left;margin-bottom:20px;">
                 <input type="checkbox" name="<?php echo $this->plugin_id; ?>[earningmap]" <?php if ($options['earningmap'] == 'on') echo 'checked="checked"'; ?> />
             </div>
-            <img style="float:left; margin: 0 0 0 20px" width="200px" src="http://127.0.0.1:8000/s/img/sidebar_widget_visual_large.png"/>
+            <img style="float:left; margin: 0 0 0 20px" width="200px" src="http://127.0.0.1:8000/s/img/earning_map_visualization_graphic.png"/>
         </td>
     </tr>
     <tr>
