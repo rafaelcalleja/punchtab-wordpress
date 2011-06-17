@@ -23,7 +23,7 @@
                 <input name="<?php echo $this->plugin_id; ?>[display]" type="radio" value="tab" <?php if ($options['display'] == 'tab') echo 'checked="checked"'; ?> />
                 <label>Red Reward Tab</label>
             </div>
-            <img style="float:left; padding: 0 0 30px 20px" width="200px" src="http://127.0.0.1:8000/s/img/position_bottom_left_visual_large.png"/>
+            <img style="float:left; padding: 0 0 30px 20px" width="200px" src="http://www.punchtab.com/s/img/position_bottom_left_visual_large.png"/>
         </td>
     </tr>
     <tr id="<?php echo $this->plugin_id; ?>[xpos]">
@@ -41,7 +41,7 @@
                 <input name="<?php echo $this->plugin_id; ?>[display]" type="radio" value="inline" <?php if ($options['display'] == 'inline') echo 'checked="checked"'; ?> />
                 <label>Sidebar Widget</label>
             </div>
-            <img style="float:left; margin: 0 0 0 20px" width="200px" src="http://127.0.0.1:8000/s/img/sidebar_widget_visual_large.png"/>
+            <img style="float:left; margin: 0 0 0 20px" width="200px" src="http://www.punchtab.com/s/img/sidebar_widget_visual_large.png"/>
         </td>
     </tr>
     <tr>
@@ -50,7 +50,7 @@
             <div style="width:100%;float:left;margin-bottom:20px;">
                 <input type="checkbox" name="<?php echo $this->plugin_id; ?>[earningmap]" <?php if ($options['earningmap'] == 'on') echo 'checked="checked"'; ?> />
             </div>
-            <img style="float:left; margin: 0 0 0 20px" width="200px" src="http://127.0.0.1:8000/s/img/earning_map_visualization_graphic.png"/>
+            <img style="float:left; margin: 0 0 0 20px" width="200px" src="http://www.punchtab.com/s/img/earning_map_visualization_graphic.png"/>
         </td>
     </tr>
     <tr>
