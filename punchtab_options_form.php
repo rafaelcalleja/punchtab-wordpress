@@ -20,7 +20,7 @@
         <td width="144" align="right" style="padding:0 30px 30px 0;vertical-align: top;"><label style="font-weight:600"><div>Display:</div></label></td>
         <td width="366">
             <div style="width:100%;float:left;margin-bottom:20px;">
-                <input name="<?php echo $this->plugin_id; ?>[display]" type="radio" value="tab" <?php if ($options['display'] == 'tab') echo 'checked="checked"'; ?> />
+                <input name="<?php echo $this->plugin_id; ?>[display]" type="radio" value="tab" <?php if (!isset($options['display']) || $options['display'] == 'tab') echo 'checked="checked"'; ?> />
                 <label>Red Reward Tab</label>
             </div>
             <img style="float:left; padding: 0 0 30px 20px" width="200px" src="http://www.punchtab.com/s/img/position_bottom_left_visual_large.png"/>
@@ -38,7 +38,7 @@
         <td width="144" height="26" align="right"></td>
         <td width="366" style="border-bottom: 1px solid #CCC;padding:0 0 10px 0;">
             <div style="width:100%;float:left;margin-bottom:20px;">
-                <input name="<?php echo $this->plugin_id; ?>[display]" type="radio" value="inline" <?php if ($options['display'] == 'inline') echo 'checked="checked"'; ?> />
+                <input name="<?php echo $this->plugin_id; ?>[display]" type="radio" value="inline" <?php if (isset($options['display']) && $options['display'] == 'inline') echo 'checked="checked"'; ?> />
                 <label>Sidebar Widget</label>
             </div>
             <img style="float:left; margin: 0 0 0 20px" width="200px" src="http://www.punchtab.com/s/img/sidebar_widget_visual_large.png"/>
@@ -48,7 +48,7 @@
         <td width="144" height="26" align="right" style="padding:0 30px 30px 0;vertical-align:top;"><span style="font-weight:600">Earning map:</span></td>
         <td width="366" style="border-bottom: 1px solid #CCC;padding:0 0 10px 0;">
             <div style="width:100%;float:left;margin-bottom:20px;">
-                <input type="checkbox" name="<?php echo $this->plugin_id; ?>[earningmap]" <?php if ($options['earningmap'] == 'on') echo 'checked="checked"'; ?> />
+                <input type="checkbox" name="<?php echo $this->plugin_id; ?>[earningmap]" <?php if (!isset($options['earningmap']) || $options['earningmap'] == 'on') echo 'checked="checked"'; ?> />
             </div>
             <img style="float:left; margin: 0 0 0 20px" width="200px" src="http://www.punchtab.com/s/img/earning_map_visualization_graphic.png"/>
         </td>
@@ -73,7 +73,7 @@ function show_tab() {
 
 document.ready = function() {
     <?php
-    if ($_GET['settings-updated'] && $options['display'] == 'inline') {
+    if (isset($_GET['settings-updated']) && $options['display'] == 'inline') {
     ?>
     if (document.getElementById('setting-error-settings_updated')) {
         document.getElementById('setting-error-settings_updated').innerHTML = '<p><strong>Settings saved</strong>. Drag the PunchTab Widget from the <em>Available Widgets</em> section to a <em>Widget Area</em> on the <a href="widgets.php">Widgets</a> settings page.';
