@@ -95,7 +95,7 @@ if(!class_exists('PunchTab')) :
 			if(isset($_COOKIE['comment_posted']))
 			{
 			  setcookie("comment_posted", "", time()-3600, COOKIEPATH, COOKIE_DOMAIN);
-			  echo '<script type="text/javascript">var _ptq = []; _ptq.push(["comment","12"]);</script>';
+			  echo '<script type="text/javascript">var _ptq = []; _ptq.push(["comment"]);</script>';
       		}      
       		/*
 			* END -Process queued events
