@@ -3,7 +3,7 @@ Contributors: punchtab
 Tags: widget, plugin, sidebar, reward, facebook, loyalty, free
 Requires at least: 3.0
 Tested up to: 3.1.3
-Stable tag: 1.4
+Stable tag: 1.5
 
 PunchTab is a loyalty program for your WordPress blog. It lets you reward your readers for visits, comments, and social sharing.
 

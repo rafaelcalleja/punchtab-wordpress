@@ -48,7 +48,7 @@
         <td width="144" height="26" align="right" style="padding:0 30px 30px 0;vertical-align:top;"><span style="font-weight:600">Earning map:</span></td>
         <td width="366" style="border-bottom: 1px solid #CCC;padding:0 0 10px 0;">
             <div style="width:100%;float:left;margin-bottom:20px;">
-                <input type="checkbox" name="<?php echo $this->plugin_id; ?>[earningmap]" <?php if (!isset($options['earningmap']) || $options['earningmap'] == 'on') echo 'checked="checked"'; ?> />
+                <input type="checkbox" name="<?php echo $this->plugin_id; ?>[earningmap]" value=1 <?php checked( 1 ==  $options['earningmap'] ); ?> />
             </div>
             <img style="float:left; margin: 0 0 0 20px" width="200px" src="http://www.punchtab.com/s/img/earning_map_visualization_graphic.png"/>
         </td>

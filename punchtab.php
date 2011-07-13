@@ -3,7 +3,7 @@
     Plugin Name: PunchTab for WordPress
     Plugin URI: http://punchtab.com
     Description: PunchTab rewards for WordPress lets you reward your users for daily visits, Facebook Likes, and leaving comments on your blog. To get started: 1) Get your key by registering your site at <a href="http://www.punchtab.com">PunchTab.com</a>, 2) Enter your key and choose tab placement from the <a href='options-general.php?page=punchtab-plugin'>Settings->PunchTab</a> menu, and 3) Click on the Activate link to the left of this description. To put your own rewards in your catalog log into your <a href="http://www.punchtab.com">PunchTab Dashboard</a>.
-    Version: 1.4
+    Version: 1.5
     Author: PunchTab
     Author URI: http://punchtab.com
 */
@@ -68,7 +68,7 @@ if(!class_exists('PunchTab')) :
 			$this->options['xpos'] = 'left';
 			$this->options['ypos'] = 'bottom';
             $this->options['display'] = 'tab';
-            $this->options['earningmap'] = 'on';
+            $this->options['earningmap'] = 1;
 			
 			/*
 			* Add Hooks
@@ -139,7 +139,7 @@ if(!class_exists('PunchTab')) :
 				$xpos = $options['xpos'];
 				$ypos = $options['ypos'];
                 $display = $options['display'];
-                $earningmap = $options['earningmap'] == 'on' ? 'true' : 'false';
+                $earningmap = isset($options['earningmap']) ? 'true' : 'false';
 				$this->show_punchtab_js($key,$xpos,$ypos,$display,$earningmap);
 			}
 		}
@@ -147,7 +147,7 @@ if(!class_exists('PunchTab')) :
 		{
 			echo '              <script type="text/javascript" charset="utf-8">
               var is_ssl = ("https:" == document.location.protocol);
-              var asset_host = is_ssl ? "https://www.punchtab.com/" : "http://www.punchtab.com/";
+              var asset_host = is_ssl ? "https://127.0.0.1:8000/" : "http://127.0.0.1:8000/";
               document.write(unescape("%3Cscript src=\'" + asset_host + "s/js/pt.js\' type=\'text/javascript\'%3E%3C/script%3E"));
               </script>
 
@@ -155,7 +155,7 @@ if(!class_exists('PunchTab')) :
               var _ptq = _ptq || [];
               var reward_widget_options = {};
               reward_widget_options.key = "' . $key . '";
-              reward_widget_options.host = "www.punchtab.com";
+              reward_widget_options.host = "127.0.0.1:8000";
               reward_widget_options.earningmap = ' . $earningmap . ';
               reward_widget_options.display = "' . $display . '";';
             echo "\n";
@@ -208,6 +208,10 @@ if(!class_exists('PunchTab')) :
 	
 			// get saved options
 			$options = $this->get_options();
+            if (!isset($options['earningmap'])) {
+                $options['earningmap'] = 1;
+                $this->update_options($options);
+            }
 			include('punchtab_options_form.php');
 		}
 		/** function/method
