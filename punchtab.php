@@ -210,6 +210,7 @@ if(!class_exists('PunchTab')) :
 			$options = $this->get_options();
             if (!isset($options['earningmap'])) {
                 $options['earningmap'] = 1;
+                $this->update_options($options);
             }
 			include('punchtab_options_form.php');
 		}
