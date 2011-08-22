@@ -16,6 +16,20 @@ if(!version_compare($wp_version, '3.0', '>='))
 }
 // END - Version check
 
+/*
+Add a link to the settings page with the others links: Activate | Delete
+TODO change the description text
+function pt_plugin_action_links($links, $file) {
+    $plugin_file = basename(__FILE__);
+    if (basename($file) == $plugin_file) {
+        $settings_link = '<a href="options-general.php?page=punchtab-plugin">'.__('Settings', 'punchtab').'</a>';
+        array_unshift($links, $settings_link);
+    }
+    return $links;
+}
+add_filter('plugin_action_links', 'pt_plugin_action_links', 10, 2);
+*/
+
 // Make sure class does not exist already.
 if(!class_exists('PunchTab')) :
 
@@ -145,17 +159,19 @@ if(!class_exists('PunchTab')) :
 		}
 		public function show_punchtab_js($key="",$xpos="",$ypos="",$display="",$earningmap='true')
 		{
+            $asset_host = "static.punchtab.com/";
+            $domain = "www.punchtab.com";
 			echo '              <script type="text/javascript" charset="utf-8">
               var is_ssl = ("https:" == document.location.protocol);
-              var asset_host = is_ssl ? "https://127.0.0.1:8000/" : "http://127.0.0.1:8000/";
-              document.write(unescape("%3Cscript src=\'" + asset_host + "s/js/pt.js\' type=\'text/javascript\'%3E%3C/script%3E"));
+              var asset_host = is_ssl ? "https://' . $asset_host . '" : "http://' . $asset_host . '";
+              document.write(unescape("%3Cscript src=\'" + asset_host + "js/pt.js\' type=\'text/javascript\'%3E%3C/script%3E"));
               </script>
 
               <script type="text/javascript" charset="utf-8">
               var _ptq = _ptq || [];
               var reward_widget_options = {};
               reward_widget_options.key = "' . $key . '";
-              reward_widget_options.host = "127.0.0.1:8000";
+              reward_widget_options.host = "' . $domain . '";
               reward_widget_options.earningmap = ' . $earningmap . ';
               reward_widget_options.display = "' . $display . '";';
             echo "\n";
