@@ -83,6 +83,7 @@ if(!class_exists('PunchTab')) :
 			$this->options['ypos'] = 'bottom';
             $this->options['display'] = 'tab';
             $this->options['earningmap'] = 1;
+            $this->options['name'] = NULL;
 			
 			/*
 			* Add Hooks
@@ -154,10 +155,14 @@ if(!class_exists('PunchTab')) :
 				$ypos = $options['ypos'];
                 $display = $options['display'];
                 $earningmap = isset($options['earningmap']) ? 'true' : 'false';
-				$this->show_punchtab_js($key,$xpos,$ypos,$display,$earningmap);
+                $name = isset($options['name']) ? $options['name'] : NULL;
+                if ($name == "") {
+                    $name = NULL;
+                }
+				$this->show_punchtab_js($key,$xpos,$ypos,$display,$earningmap,$name);
 			}
 		}
-		public function show_punchtab_js($key="",$xpos="",$ypos="",$display="",$earningmap='true')
+		public function show_punchtab_js($key="",$xpos="",$ypos="",$display="",$earningmap='true',$name=NULL)
 		{
             $asset_host = "static.punchtab.com/";
             $domain = "www.punchtab.com";
@@ -177,6 +182,10 @@ if(!class_exists('PunchTab')) :
             echo "\n";
             if ($display == 'tab') {
                   echo 'reward_widget_options.position = {x:"' . $xpos . '",y:"' . $ypos . '"};';
+                  echo "\n";
+            }
+            if (!is_null($name)) {
+                  echo 'reward_widget_options.name = "'.$name.'"';
                   echo "\n";
             }
             echo 'var reward_widget = new PT.reward_widget(reward_widget_options);
