@@ -166,31 +166,53 @@ if(!class_exists('PunchTab')) :
 		{
             $asset_host = "static.punchtab.com/";
             $domain = "www.punchtab.com";
-			echo '              <script type="text/javascript" charset="utf-8">
-              var is_ssl = ("https:" == document.location.protocol);
-              var asset_host = is_ssl ? "https://' . $asset_host . '" : "http://' . $asset_host . '";
-              document.write(unescape("%3Cscript src=\'" + asset_host + "js/pt.js\' type=\'text/javascript\'%3E%3C/script%3E"));
-              </script>
 
-              <script type="text/javascript" charset="utf-8">
-              var _ptq = _ptq || [];
-              var reward_widget_options = {};
-              reward_widget_options.key = "' . $key . '";
-              reward_widget_options.host = "' . $domain . '";
-              reward_widget_options.earningmap = ' . $earningmap . ';
-              reward_widget_options.display = "' . $display . '";';
+            $badge = false;
+
+            echo '          <script type="text/javascript" charset="utf-8">
+                var _ptq = _ptq || [];
+                var _punchtab_settings = {
+                    key: "'. $key . '",
+                    display: "'. $display. '",
+                    earningmap: '. $earningmap .',
+                    position: {x:"'.$xpos.'", y:"'.$ypos.'"}
+                };';
+
+
             echo "\n";
-            if ($display == 'tab') {
-                  echo 'reward_widget_options.position = {x:"' . $xpos . '",y:"' . $ypos . '"};';
-                  echo "\n";
-            }
+
             if (!is_null($name)) {
-                  echo 'reward_widget_options.name = "'.$name.'"';
-                  echo "\n";
+                  echo '            _punchtab_settings.name = "'.$name.'";';
+                echo "\n";
             }
-            echo 'var reward_widget = new PT.reward_widget(reward_widget_options);
-              </script>
-			';
+
+            if ($badge) {
+                echo '          var _btq = _btq || [];';
+                echo "\n";
+            }
+        
+
+            echo '              (function() {
+                var pt = document.createElement(\'script\'); pt.type = \'text/javascript\'; pt.async = true;
+                pt.src = (\'https:\' == document.location.protocol ? \'https://\' : \'http://\') +\''.$asset_host.'js/pt.js\';
+                var s = document.getElementsByTagName(\'script\')[0]; s.parentNode.insertBefore(pt, s);
+            })();';
+
+            echo "\n";
+
+            if ($badge) {
+            echo '              (function() {
+                var pt = document.createElement(\'script\'); pt.type = \'text/javascript\'; pt.async = true;
+                pt.src = (\'https:\' == document.location.protocol ? \'https://\' : \'http://\') +\''.$asset_host.'js/pb.js\';
+                var s = document.getElementsByTagName(\'script\')[0]; s.parentNode.insertBefore(pt, s);
+            })();';
+            }
+
+            echo '          </script>';
+
+            echo "\n";
+
+
 		}		
 		/** function/method
 		* Usage: helper for hooking activation (creating the option fields)
