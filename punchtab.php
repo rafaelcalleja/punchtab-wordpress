@@ -78,6 +78,8 @@ if(!class_exists('PunchTab')) :
             $this->options = array();
             // set default options
             $this->options['key'] = '';
+            $this->options['enable_rewards'] = 'on';
+            $this->options['enable_badges'] = 'on';
             $this->options['xpos'] = 'left';
             $this->options['ypos'] = 'bottom';
             $this->options['display'] = 'tab';
@@ -109,7 +111,7 @@ if(!class_exists('PunchTab')) :
             if(isset($_COOKIE['comment_posted']))
             {
               setcookie("comment_posted", "", time()-3600, COOKIEPATH, COOKIE_DOMAIN);
-              echo '<script type="text/javascript">var _ptq = []; _ptq.push(["comment","12"]);</script>';
+              echo '<script type="text/javascript">var _ptq = []; var _btq = []; _ptq.push(["comment","12"]); _btq.push(["comment","42"]);</script>';
               }
               /*
             * END -Process queued events
@@ -145,28 +147,29 @@ if(!class_exists('PunchTab')) :
         */
         public function punchtab_scripts()
         {
-            if (!is_admin())
-            {
-
+            if (!is_admin()) {
                 $options = $this->get_options();
                 $key = $options['key'];
                 $xpos = $options['xpos'];
                 $ypos = $options['ypos'];
                 $display = $options['display'];
-                $earningmap = isset($options['earningmap']) ? 'true' : 'false';
+                $earningmap = $options['earningmap'] ? 'true' : 'false';
                 $name = isset($options['name']) ? $options['name'] : NULL;
                 if ($name == "") {
                     $name = NULL;
                 }
-                $this->show_punchtab_js($key,$xpos,$ypos,$display,$earningmap,$name);
+                if ($options['enable_rewards']) {
+                    $this->show_punchtab_reward_js($key,$xpos,$ypos,$display,$earningmap,$name);
+                }
+                if ($options['enable_badges']) {
+                    $this->show_punchtab_badge_js($key);
+                }
             }
         }
-        public function show_punchtab_js($key="",$xpos="",$ypos="",$display="",$earningmap='true',$name=NULL)
+        public function show_punchtab_reward_js($key="",$xpos="",$ypos="",$display="",$earningmap='true',$name=NULL)
         {
             $asset_host = "static.punchtab.com/";
             $domain = "www.punchtab.com";
-
-            $badge = false;
 
             echo '          <script type="text/javascript" charset="utf-8">
                 var _ptq = _ptq || [];
@@ -185,12 +188,6 @@ if(!class_exists('PunchTab')) :
                 echo "\n";
             }
 
-            if ($badge) {
-                echo '          var _btq = _btq || [];';
-                echo "\n";
-            }
-
-
             echo '              (function() {
                 var pt = document.createElement(\'script\'); pt.type = \'text/javascript\'; pt.async = true;
                 pt.src = (\'https:\' == document.location.protocol ? \'https://\' : \'http://\') +\''.$asset_host.'js/pt.js\';
@@ -198,21 +195,30 @@ if(!class_exists('PunchTab')) :
             })();';
 
             echo "\n";
-
-            if ($badge) {
-            echo '              (function() {
-                var pt = document.createElement(\'script\'); pt.type = \'text/javascript\'; pt.async = true;
-                pt.src = (\'https:\' == document.location.protocol ? \'https://\' : \'http://\') +\''.$asset_host.'js/pb.js\';
-                var s = document.getElementsByTagName(\'script\')[0]; s.parentNode.insertBefore(pt, s);
-            })();';
-            }
-
             echo '          </script>';
-
             echo "\n";
-
-
         }
+
+        public function show_punchtab_badge_js($key="")
+        {
+            $asset_host = "static.punchtab.com/";
+            $domain = "www.punchtab.com";
+
+            $script = '<script type="text/javascript" charset="utf-8">';
+            $script .= 'var _btq = _btq || [];';
+            $script .= 'var _punchtab_settings_badges = {';
+            $script .= '  key: "'. $key . '"';
+            $script .= '};';
+            $script .= '(function() {';
+            $script .= 'var pt = document.createElement(\'script\'); pt.type = \'text/javascript\'; pt.async = true;';
+            $script .= 'pt.src = (\'https:\' == document.location.protocol ? \'https://\' : \'http://\') +\''.$asset_host.'js/pb.js\';';
+            $script .= 'var s = document.getElementsByTagName(\'script\')[0]; s.parentNode.insertBefore(pt, s);';
+            $script .= '})();';
+            $script .= '</script>';
+
+            echo $script;
+        }
+
         /** function/method
         * Usage: helper for hooking activation (creating the option fields)
         * Arg(0): null
@@ -254,8 +260,22 @@ if(!class_exists('PunchTab')) :
 
             // get saved options
             $options = $this->get_options();
+            $updated = false;
+
             if (!isset($options['earningmap'])) {
                 $options['earningmap'] = 1;
+                $updated = true;
+            }
+            if (!isset($options['enable_rewards'])) {
+                $options['enable_rewards'] = 1;
+                $updated = true;
+            }
+            if (!isset($options['enable_badges'])) {
+                $options['enable_badges'] = 1;
+                $updated = true;
+            }
+
+            if ($updated) {
                 $this->update_options($options);
             }
             include('punchtab_options_form.php');

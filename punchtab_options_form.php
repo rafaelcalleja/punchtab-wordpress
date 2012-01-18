@@ -4,8 +4,8 @@
 
 <div class="wrap">
     <?php screen_icon(); ?>
-	<form action="options.php" method="post" id=<?php echo $this->plugin_id; ?>"_options_form" name=<?php echo $this->plugin_id; ?>"_options_form">
-	<?php settings_fields($this->plugin_id.'_options'); ?>
+    <form action="options.php" method="post" id=<?php echo $this->plugin_id; ?>"_options_form" name=<?php echo $this->plugin_id; ?>"_options_form">
+    <?php settings_fields($this->plugin_id.'_options'); ?>
     <h2>PunchTab &raquo; Options</h2>
     <table width="550" border="0" cellpadding="5" cellspacing="5">
     <tr>
@@ -21,6 +21,10 @@
         <td width="366" style="border-bottom: 1px solid #CCC;padding:0 0 10px 0;"><input name="<?php echo $this->plugin_id; ?>[name]" type="text" value="<?php echo $options['name']; ?>" size="40" /></td>
     </tr>
     <tr>
+        <td width="144" height="26" align="right" style="margin-top:20px;padding:0 30px 0 0;vertical-align: top;"><label style="font-weight:600" for="<?php echo $this->plugin_id; ?>[enable_rewards]">Enable rewards:</label> </td>
+        <td width="366"><input type="hidden" name="<?php echo $this->plugin_id; ?>[enable_rewards]" value="0" /><input name="<?php echo $this->plugin_id; ?>[enable_rewards]" type="checkbox" <?php echo ($options['enable_rewards'] || !isset($options['enable_rewards']))?'checked="checked"':''; ?> /></td>
+    </tr>
+    <tr id="<?php echo $this->plugin_id; ?>_display_tab">
         <td width="144" align="right" style="padding:0 30px 30px 0;vertical-align: top;"><label style="font-weight:600"><div>Display:</div></label></td>
         <td width="366">
             <div style="width:100%;float:left;margin-bottom:20px;">
@@ -38,7 +42,7 @@
         <td width="144" height="26" align="right"><label for="<?php echo $this->plugin_id; ?>[ypos]">Y Pos (top | bottom)</label> </td>
         <td width="366" style="border-bottom: 1px solid #CCC;padding:0 0 10px 0;"><input name="<?php echo $this->plugin_id; ?>[ypos]" type="text" value="<?php echo $options['ypos']; ?>" size="40" /></td>
     </tr>
-    <tr>
+    <tr id="<?php echo $this->plugin_id; ?>_display_inline">
         <td width="144" height="26" align="right"></td>
         <td width="366" style="border-bottom: 1px solid #CCC;padding:0 0 10px 0;">
             <div style="width:100%;float:left;margin-bottom:20px;">
@@ -48,15 +52,20 @@
             <img style="float:left; margin: 0 0 0 20px" width="200px" src="http://www.punchtab.com/s/img/sidebar_widget_visual_large.png"/>
         </td>
     </tr>
-    <tr>
+    <tr id="<?php echo $this->plugin_id; ?>[earningmap]">
         <td width="144" height="26" align="right" style="padding:0 30px 30px 0;vertical-align:top;"><span style="font-weight:600">Earning map:</span></td>
         <td width="366" style="border-bottom: 1px solid #CCC;padding:0 0 10px 0;">
             <div style="width:100%;float:left;margin-bottom:20px;">
-                <input type="checkbox" name="<?php echo $this->plugin_id; ?>[earningmap]" value=1 <?php checked( 1 ==  $options['earningmap'] ); ?> />
+                <input type="hidden" name="<?php echo $this->plugin_id; ?>[earningmap]" value="0" /><input type="checkbox" name="<?php echo $this->plugin_id; ?>[earningmap]" value=1 <?php checked( 1 ==  $options['earningmap'] ); ?> />
             </div>
             <img style="float:left; margin: 0 0 0 20px" width="200px" src="http://www.punchtab.com/s/img/earning_map_visualization_graphic.png"/>
         </td>
     </tr>
+    <tr>
+        <td width="144" height="26" align="right" style="margin-top:20px;padding:0 30px 0 0;vertical-align: top;"><label style="font-weight:600" for="<?php echo $this->plugin_id; ?>[enable_badges]">Enable badges:</label> </td>
+        <td width="366"><input type="hidden" name="<?php echo $this->plugin_id; ?>[enable_badges]" value="0" /><input name="<?php echo $this->plugin_id; ?>[enable_badges]" type="checkbox" <?php echo ($options['enable_badges'] || !isset($options['enable_badges']))?'checked="checked"':''; ?> /></td>
+    </tr>
+
     <tr>
         <td width="144" height="26" align="right"> </td>
         <td width="366"><input type="submit" name="submit" value="Save Options" class="button-primary" /></td>
@@ -74,6 +83,21 @@ function show_tab() {
     document.getElementById('<?php echo $this->plugin_id; ?>[ypos]').style.display = 'table-row';
     document.getElementById('<?php echo $this->plugin_id; ?>[xpos]').style.display = 'table-row';
 }
+function toggle_rewards(visible) {
+    if (visible) {
+        document.getElementById('<?php echo $this->plugin_id; ?>_display_tab').style.display = 'table-row';
+        document.getElementById('<?php echo $this->plugin_id; ?>_display_inline').style.display = 'table-row';
+        document.getElementById('<?php echo $this->plugin_id; ?>[xpos]').style.display = 'table-row';
+        document.getElementById('<?php echo $this->plugin_id; ?>[ypos]').style.display = 'table-row';
+        document.getElementById('<?php echo $this->plugin_id; ?>[earningmap]').style.display = 'table-row';
+    } else {
+        document.getElementById('<?php echo $this->plugin_id; ?>_display_tab').style.display = 'none';
+        document.getElementById('<?php echo $this->plugin_id; ?>_display_inline').style.display = 'none';
+        document.getElementById('<?php echo $this->plugin_id; ?>[xpos]').style.display = 'none';
+        document.getElementById('<?php echo $this->plugin_id; ?>[ypos]').style.display = 'none';
+        document.getElementById('<?php echo $this->plugin_id; ?>[earningmap]').style.display = 'none';
+    }
+}
 
 document.ready = function() {
     <?php
@@ -83,8 +107,8 @@ document.ready = function() {
         document.getElementById('setting-error-settings_updated').innerHTML = '<p><strong>Settings saved</strong>. Drag the PunchTab Widget from the <em>Available Widgets</em> section to a <em>Widget Area</em> on the <a href="widgets.php">Widgets</a> settings page.';
     }
     <?php } ?>
-            
-        
+
+
     var radios = document.getElementsByName('<?php echo $this->plugin_id; ?>[display]');
     if (radios[0].checked == true) show_tab();
     else show_sidebar();
@@ -95,6 +119,20 @@ document.ready = function() {
     radios[1].onclick = function() {
         show_sidebar();
     };
+
+    var reward_program = document.getElementsByName('<?php echo $this->plugin_id; ?>[enable_rewards]');
+    if (reward_program[1].checked == true) {
+        toggle_rewards(true);
+    } else {
+        toggle_rewards(false);
+    }
+    reward_program[1].onclick = function(e){
+        if (e.target.checked) {
+            toggle_rewards(true);
+        } else {
+            toggle_rewards(false);
+        }
+    }
 }
 </script>
 
