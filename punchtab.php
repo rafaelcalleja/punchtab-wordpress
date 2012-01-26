@@ -111,9 +111,9 @@ if(!class_exists('PunchTab')) :
             if(isset($_COOKIE['comment_posted']))
             {
               setcookie("comment_posted", "", time()-3600, COOKIEPATH, COOKIE_DOMAIN);
-              echo '<script type="text/javascript">var _ptq = []; var _btq = []; _ptq.push(["comment","12"]); _btq.push(["comment","42"]);</script>';
-              }
-              /*
+              add_action('wp_head', create_function('', 'echo "<script type=\"text/javascript\">var _ptq = []; var _btq = []; _ptq.push([\"comment\",\"12\"]); _btq.push([\"comment\",\"42\"]);</script>";'));
+            }
+           /*
             * END -Process queued events
             */
         }
