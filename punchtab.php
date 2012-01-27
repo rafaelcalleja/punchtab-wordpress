@@ -149,10 +149,10 @@ if(!class_exists('PunchTab')) :
         {
             if (!is_admin()) {
                 $options = $this->get_options();
-                $key = $options['key'];
-                $xpos = $options['xpos'];
-                $ypos = $options['ypos'];
-                $display = $options['display'];
+                $key = trim($options['key']);
+                $xpos = trim($options['xpos']);
+                $ypos = trim($options['ypos']);
+                $display = trim($options['display']);
                 $earningmap = $options['earningmap'] ? 'true' : 'false';
                 $name = isset($options['name']) ? $options['name'] : NULL;
                 if ($name == "") {
