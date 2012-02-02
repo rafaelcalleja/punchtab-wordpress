@@ -31,7 +31,7 @@
                 <input name="<?php echo $this->plugin_id; ?>[display]" type="radio" value="tab" <?php if (!isset($options['display']) || $options['display'] == 'tab') echo 'checked="checked"'; ?> />
                 <label>Red Reward Tab</label>
             </div>
-            <img style="float:left; padding: 0 0 30px 20px" width="200px" src="http://www.punchtab.com/s/img/position_bottom_left_visual_large.png"/>
+            <img style="float:left; padding: 0 0 30px 20px" width="200px" src="http://static.punchtab.com/img/position_bottom_left_visual_large.png"/>
         </td>
     </tr>
     <tr id="<?php echo $this->plugin_id; ?>[xpos]">
@@ -49,7 +49,7 @@
                 <input name="<?php echo $this->plugin_id; ?>[display]" type="radio" value="inline" <?php if (isset($options['display']) && $options['display'] == 'inline') echo 'checked="checked"'; ?> />
                 <label>Sidebar Widget</label>
             </div>
-            <img style="float:left; margin: 0 0 0 20px" width="200px" src="http://www.punchtab.com/s/img/sidebar_widget_visual_large.png"/>
+            <img style="float:left; margin: 0 0 0 20px" width="200px" src="http://static.punchtab.com/img/sidebar_widget_visual_large.png"/>
         </td>
     </tr>
     <tr id="<?php echo $this->plugin_id; ?>[earningmap]">
@@ -58,12 +58,18 @@
             <div style="width:100%;float:left;margin-bottom:20px;">
                 <input type="hidden" name="<?php echo $this->plugin_id; ?>[earningmap]" value="0" /><input type="checkbox" name="<?php echo $this->plugin_id; ?>[earningmap]" value=1 <?php checked( 1 ==  $options['earningmap'] ); ?> />
             </div>
-            <img style="float:left; margin: 0 0 0 20px" width="200px" src="http://www.punchtab.com/s/img/earning_map_visualization_graphic.png"/>
+            <img style="float:left; margin: 0 0 0 20px" width="200px" src="http://static.punchtab.com/img/earning_map_visualization_graphic.png"/>
         </td>
     </tr>
     <tr>
         <td width="144" height="26" align="right" style="margin-top:20px;padding:0 30px 0 0;vertical-align: top;"><label style="font-weight:600" for="<?php echo $this->plugin_id; ?>[enable_badges]">Enable badges:</label> </td>
-        <td width="366"><input type="hidden" name="<?php echo $this->plugin_id; ?>[enable_badges]" value="0" /><input name="<?php echo $this->plugin_id; ?>[enable_badges]" type="checkbox" <?php echo (isset($options['enable_badges']) && $options['enable_badges'] == 'on' )?'checked="checked"':''; ?> /></td>
+        <td width="366" style="border-bottom: 1px solid #CCC;padding:0 0 10px 0;">
+            <div style="width:100%;float:left;margin-bottom:20px;">
+                <input type="hidden" name="<?php echo $this->plugin_id; ?>[enable_badges]" value="0" />
+                <input name="<?php echo $this->plugin_id; ?>[enable_badges]" type="checkbox" <?php echo (isset($options['enable_badges']) && $options['enable_badges'] == 'on' )?'checked="checked"':''; ?> />
+            </div>
+                <img style="float:left; margin: 0 0 0 20px" width="200px" src="http://static.punchtab.com/img/wordpress-badges.png"/>
+        </td>
     </tr>
 
     <tr>
