@@ -79,7 +79,7 @@ if(!class_exists('PunchTab')) :
             // set default options
             $this->options['key'] = '';
             $this->options['enable_rewards'] = 'on';
-            $this->options['enable_badges'] = 'on';
+            $this->options['enable_badges'] = 'off';
             $this->options['xpos'] = 'left';
             $this->options['ypos'] = 'bottom';
             $this->options['display'] = 'tab';
@@ -271,7 +271,7 @@ if(!class_exists('PunchTab')) :
                 $updated = true;
             }
             if (!isset($options['enable_badges'])) {
-                $options['enable_badges'] = 1;
+                $options['enable_badges'] = 0;
                 $updated = true;
             }
 
