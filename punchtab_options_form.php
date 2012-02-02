@@ -14,11 +14,11 @@
     </tr>
     <tr>
         <td width="144" height="16" align="right"></td>
-        <td width="366" style="border-bottom: 1px solid #CCC;padding:0 0 10px 0;"><p style="margin-top:3px;font-size:10px;">Signup at <a href="http://www.punchtab.com" target="_blank">PunchTab</a>, if you don't already have a key.</p></td>
+        <td width="366" style="border-bottom: 1px solid #CCC;padding:0 0 10px 0;"><p style="margin-top:3px;font-size:10px;">Signup at <a href="http://www.punchtab.com/?src=wp" target="_blank">PunchTab</a>, if you don't already have a key.</p></td>
     </tr>
     <tr>
         <td width="144" height="26" align="right" style="margin-top:20px;padding:0 30px 0 0;vertical-align: top;"><label style="font-weight:600" for="<?php echo $this->plugin_id; ?>[name]">Name:</label> </td>
-        <td width="366" style="border-bottom: 1px solid #CCC;padding:0 0 10px 0;"><input name="<?php echo $this->plugin_id; ?>[name]" type="text" value="<?php echo $options['name']; ?>" size="40" /></td>
+        <td width="366" style="border-bottom: 1px solid #CCC;padding:0 0 10px 0;"><input name="<?php echo $this->plugin_id; ?>[name]" type="text" value="<?php if (isset($options['name'])) echo $options['name']; ?>" size="40" /></td>
     </tr>
     <tr>
         <td width="144" height="26" align="right" style="margin-top:20px;padding:0 30px 0 0;vertical-align: top;"><label style="font-weight:600" for="<?php echo $this->plugin_id; ?>[enable_rewards]">Enable rewards:</label> </td>
@@ -63,7 +63,7 @@
     </tr>
     <tr>
         <td width="144" height="26" align="right" style="margin-top:20px;padding:0 30px 0 0;vertical-align: top;"><label style="font-weight:600" for="<?php echo $this->plugin_id; ?>[enable_badges]">Enable badges:</label> </td>
-        <td width="366"><input type="hidden" name="<?php echo $this->plugin_id; ?>[enable_badges]" value="0" /><input name="<?php echo $this->plugin_id; ?>[enable_badges]" type="checkbox" <?php echo ($options['enable_badges'] || !isset($options['enable_badges']))?'checked="checked"':''; ?> /></td>
+        <td width="366"><input type="hidden" name="<?php echo $this->plugin_id; ?>[enable_badges]" value="0" /><input name="<?php echo $this->plugin_id; ?>[enable_badges]" type="checkbox" <?php echo (isset($options['enable_badges']) && $options['enable_badges'])?'checked="checked"':''; ?> /></td>
     </tr>
 
     <tr>
