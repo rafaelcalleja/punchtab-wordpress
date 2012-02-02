@@ -63,7 +63,7 @@
     </tr>
     <tr>
         <td width="144" height="26" align="right" style="margin-top:20px;padding:0 30px 0 0;vertical-align: top;"><label style="font-weight:600" for="<?php echo $this->plugin_id; ?>[enable_badges]">Enable badges:</label> </td>
-        <td width="366"><input type="hidden" name="<?php echo $this->plugin_id; ?>[enable_badges]" value="0" /><input name="<?php echo $this->plugin_id; ?>[enable_badges]" type="checkbox" <?php echo (isset($options['enable_badges']) && $options['enable_badges'])?'checked="checked"':''; ?> /></td>
+        <td width="366"><input type="hidden" name="<?php echo $this->plugin_id; ?>[enable_badges]" value="0" /><input name="<?php echo $this->plugin_id; ?>[enable_badges]" type="checkbox" <?php echo (isset($options['enable_badges']) && $options['enable_badges'] == 'on' )?'checked="checked"':''; ?> /></td>
     </tr>
 
     <tr>
