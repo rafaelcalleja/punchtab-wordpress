@@ -35,12 +35,19 @@
         </td>
     </tr>
     <tr id="<?php echo $this->plugin_id; ?>[xpos]">
-        <td width="144" height="26" align="right"><label for="<?php echo $this->plugin_id; ?>[xpos]">X Pos (left | right)</label> </td>
-        <td width="366"><input name="<?php echo $this->plugin_id; ?>[xpos]" type="text" value="<?php echo $options['xpos']; ?>" size="40" /></td>
+        <td width="144" height="26" align="right"><label for="<?php echo $this->plugin_id; ?>[xpos]">Rewards X Pos</label> </td>
+        <td width="366"><select name="<?php echo $this->plugin_id; ?>[xpos]">
+            <option value="left" <?php if ($options['xpos'] == 'left') echo 'selected="selected"'; ?>>Left</option>
+            <option value="right" <?php if ($options['xpos'] == 'right') echo 'selected="selected"'; ?>>Right</option>
+        </select></td>
     </tr>
     <tr id="<?php echo $this->plugin_id; ?>[ypos]">
-        <td width="144" height="26" align="right"><label for="<?php echo $this->plugin_id; ?>[ypos]">Y Pos (top | bottom)</label> </td>
-        <td width="366" style="border-bottom: 1px solid #CCC;padding:0 0 10px 0;"><input name="<?php echo $this->plugin_id; ?>[ypos]" type="text" value="<?php echo $options['ypos']; ?>" size="40" /></td>
+        <td width="144" height="26" align="right"><label for="<?php echo $this->plugin_id; ?>[ypos]">Rewards Y Pos</label> </td>
+        <td width="366" style="border-bottom: 1px solid #CCC;padding:0 0 10px 0;">
+        <select name="<?php echo $this->plugin_id; ?>[ypos]">
+            <option value="top" <?php if ($options['ypos'] == 'top') echo 'selected="selected"'; ?>>Top</option>
+            <option value="bottom" <?php if ($options['ypos'] == 'bottom' || empty($options['ypos'])) echo 'selected="selected"'; ?>>Bottom</option>
+        </select>
     </tr>
     <tr id="<?php echo $this->plugin_id; ?>_display_inline">
         <td width="144" height="26" align="right"></td>
@@ -65,7 +72,21 @@
         <td width="144" height="26" align="right" style="margin-top:20px;padding:0 30px 0 0;vertical-align: top;"><label style="font-weight:600" for="<?php echo $this->plugin_id; ?>[enable_badges]">Enable badges:</label> </td>
         <td width="366"><input type="hidden" name="<?php echo $this->plugin_id; ?>[enable_badges]" value="0" /><input name="<?php echo $this->plugin_id; ?>[enable_badges]" type="checkbox" <?php echo ($options['enable_badges'] || !isset($options['enable_badges']))?'checked="checked"':''; ?> /></td>
     </tr>
-
+    <tr id="<?php echo $this->plugin_id; ?>[badge_xpos]">
+        <td width="144" height="26" align="right"><label for="<?php echo $this->plugin_id; ?>[badge_xpos]">Badges X Pos</label> </td>
+        <td width="366"><select name="<?php echo $this->plugin_id; ?>[badge_xpos]">
+            <option value="left" <?php if ($options['badge_xpos'] == 'left') echo 'selected="selected"'; ?>>Left</option>
+            <option value="right" <?php if ($options['badge_xpos'] == 'right') echo 'selected="selected"'; ?>>Right</option>
+        </select></td>
+    </tr>
+    <tr id="<?php echo $this->plugin_id; ?>[badge_ypos]">
+        <td width="144" height="26" align="right"><label for="<?php echo $this->plugin_id; ?>[badge_ypos]">Badges Y Pos</label> </td>
+        <td width="366" style="border-bottom: 1px solid #CCC;padding:0 0 10px 0;">
+        <select name="<?php echo $this->plugin_id; ?>[badge_ypos]">
+            <option value="top" <?php if ($options['badge_ypos'] == 'top') echo 'selected="selected"'; ?>>Top</option>
+            <option value="bottom" <?php if ($options['badge_ypos'] == 'bottom' || empty($options['badge_ypos'])) echo 'selected="selected"'; ?>>Bottom</option>
+        </select>
+    </tr>
     <tr>
         <td width="144" height="26" align="right"> </td>
         <td width="366"><input type="submit" name="submit" value="Save Options" class="button-primary" /></td>
@@ -96,6 +117,16 @@ function toggle_rewards(visible) {
         document.getElementById('<?php echo $this->plugin_id; ?>[xpos]').style.display = 'none';
         document.getElementById('<?php echo $this->plugin_id; ?>[ypos]').style.display = 'none';
         document.getElementById('<?php echo $this->plugin_id; ?>[earningmap]').style.display = 'none';
+    }
+}
+
+function toggle_badges(visible) {
+    if (visible) {
+        document.getElementById('<?php echo $this->plugin_id; ?>[badge_xpos]').style.display = 'table-row';
+        document.getElementById('<?php echo $this->plugin_id; ?>[badge_ypos]').style.display = 'table-row';
+    } else {
+        document.getElementById('<?php echo $this->plugin_id; ?>[badge_xpos]').style.display = 'none';
+        document.getElementById('<?php echo $this->plugin_id; ?>[badge_ypos]').style.display = 'none';
     }
 }
 
@@ -131,6 +162,20 @@ document.ready = function() {
             toggle_rewards(true);
         } else {
             toggle_rewards(false);
+        }
+    }
+
+    var badge_program = document.getElementsByName('<?php echo $this->plugin_id; ?>[enable_badges]');
+    if (badge_program[1].checked == true) {
+        toggle_badges(true);
+    } else {
+        toggle_badges(false);
+    }
+    badge_program[1].onclick = function(e){
+        if (e.target.checked) {
+            toggle_badges(true);
+        } else {
+            toggle_badges(false);
         }
     }
 }

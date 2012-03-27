@@ -3,7 +3,7 @@
     Plugin Name: PunchTab for WordPress
     Plugin URI: http://punchtab.com
     Description: PunchTab rewards for WordPress lets you reward your users for daily visits, Facebook Likes, and leaving comments on your blog. To get started: 1) Get your key by registering your site at <a href="http://www.punchtab.com">PunchTab.com</a>, 2) Enter your key and choose tab placement from the <a href='options-general.php?page=punchtab-plugin'>Settings->PunchTab</a> menu, and 3) Click on the Activate link to the left of this description. To put your own rewards in your catalog log into your <a href="http://www.punchtab.com">PunchTab Dashboard</a>.
-    Version: 1.6
+    Version: 1.7
     Author: PunchTab
     Author URI: http://punchtab.com
 */
@@ -85,6 +85,8 @@ if(!class_exists('PunchTab')) :
             $this->options['display'] = 'tab';
             $this->options['earningmap'] = 1;
             $this->options['name'] = NULL;
+            $this->options['badge_xpos'] = 'left';
+            $this->options['badge_ypos'] = 'bottom';
 
             /*
             * Add Hooks
@@ -155,6 +157,8 @@ if(!class_exists('PunchTab')) :
                 $display = trim($options['display']);
                 $earningmap = $options['earningmap'] ? 'true' : 'false';
                 $name = isset($options['name']) ? $options['name'] : NULL;
+                $badge_xpos = trim($options['badge_xpos']);
+                $badge_ypos = trim($options['badge_ypos']);
                 if ($name == "") {
                     $name = NULL;
                 }
@@ -162,7 +166,7 @@ if(!class_exists('PunchTab')) :
                     $this->show_punchtab_reward_js($key,$xpos,$ypos,$display,$earningmap,$name);
                 }
                 if ($options['enable_badges']) {
-                    $this->show_punchtab_badge_js($key);
+                    $this->show_punchtab_badge_js($key,$badge_xpos,$badge_ypos);
                 }
             }
         }
@@ -199,7 +203,7 @@ if(!class_exists('PunchTab')) :
             echo "\n";
         }
 
-        public function show_punchtab_badge_js($key="")
+        public function show_punchtab_badge_js($key="", $xpos="", $ypos="")
         {
             $asset_host = "static.punchtab.com/";
             $domain = "www.punchtab.com";
@@ -207,7 +211,8 @@ if(!class_exists('PunchTab')) :
             $script = '<script type="text/javascript" charset="utf-8">';
             $script .= 'var _btq = _btq || [];';
             $script .= 'var _punchtab_settings_badges = {';
-            $script .= '  key: "'. $key . '"';
+            $script .= '  key: "'. $key . '",';
+            $script .= '  position: {x: "'. $xpos . '", y: "' . $ypos . '"}';
             $script .= '};';
             $script .= '(function() {';
             $script .= 'var pt = document.createElement(\'script\'); pt.type = \'text/javascript\'; pt.async = true;';
