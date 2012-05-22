@@ -197,7 +197,7 @@ if(!class_exists('PunchTab')) :
 
             echo '              (function() {
                 var pt = document.createElement(\'script\'); pt.type = \'text/javascript\'; pt.async = true;
-                pt.src = (\'https:\' == document.location.protocol ? \'https://\' : \'http://\') +\''.$asset_host.'js/pt.js\';
+                pt.src = (\'https:\' == document.location.protocol ? \'https://\' : \'http://\') +\''.$asset_host.'js/pt.js?src=wordpress\';
                 var s = document.getElementsByTagName(\'script\')[0]; s.parentNode.insertBefore(pt, s);
             })();';
 
