@@ -78,6 +78,7 @@ if(!class_exists('PunchTab')) :
             $this->options = array();
             // set default options
             $this->options['key'] = '';
+            $this->options['language'] = '';
             $this->options['enable_rewards'] = 'on';
             $this->options['enable_badges'] = 'off';
             $this->options['xpos'] = 'left';
@@ -152,6 +153,7 @@ if(!class_exists('PunchTab')) :
             if (!is_admin()) {
                 $options = $this->get_options();
                 $key = trim($options['key']);
+                $language = trim($options['language']);
                 $xpos = trim($options['xpos']);
                 $ypos = trim($options['ypos']);
                 $display = trim($options['display']);
@@ -163,14 +165,14 @@ if(!class_exists('PunchTab')) :
                     $name = NULL;
                 }
                 if ($options['enable_rewards']) {
-                    $this->show_punchtab_reward_js($key,$xpos,$ypos,$display,$earningmap,$name);
+                    $this->show_punchtab_reward_js($key,$language,$xpos,$ypos,$display,$earningmap,$name);
                 }
                 if ($options['enable_badges']) {
-                    $this->show_punchtab_badge_js($key,$badge_xpos,$badge_ypos);
+                    $this->show_punchtab_badge_js($key,$language,$badge_xpos,$badge_ypos);
                 }
             }
         }
-        public function show_punchtab_reward_js($key="",$xpos="",$ypos="",$display="",$earningmap='true',$name=NULL)
+        public function show_punchtab_reward_js($key="",$language="",$xpos="",$ypos="",$display="",$earningmap='true',$name=NULL)
         {
             $asset_host = "static.punchtab.com/";
             $domain = "www.punchtab.com";
@@ -179,6 +181,7 @@ if(!class_exists('PunchTab')) :
                 var _ptq = _ptq || [];
                 var _punchtab_settings = {
                     key: "'. $key . '",
+                    language: "'. $language . '",
                     display: "'. $display. '",
                     earningmap: '. $earningmap .',
                     position: {x:"'.$xpos.'", y:"'.$ypos.'"}
@@ -203,7 +206,7 @@ if(!class_exists('PunchTab')) :
             echo "\n";
         }
 
-        public function show_punchtab_badge_js($key="", $xpos="", $ypos="")
+        public function show_punchtab_badge_js($key="",$language="",$xpos="", $ypos="")
         {
             $asset_host = "static.punchtab.com/";
             $domain = "www.punchtab.com";
@@ -212,6 +215,7 @@ if(!class_exists('PunchTab')) :
             $script .= 'var _btq = _btq || [];';
             $script .= 'var _punchtab_settings_badges = {';
             $script .= '  key: "'. $key . '",';
+            $script .= '  language: "'. $language . '",';
             $script .= '  position: {x: "'. $xpos . '", y: "' . $ypos . '"}';
             $script .= '};';
             $script .= '(function() {';
