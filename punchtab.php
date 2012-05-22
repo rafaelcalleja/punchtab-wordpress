@@ -220,7 +220,7 @@ if(!class_exists('PunchTab')) :
             $script .= '};';
             $script .= '(function() {';
             $script .= 'var pt = document.createElement(\'script\'); pt.type = \'text/javascript\'; pt.async = true;';
-            $script .= 'pt.src = (\'https:\' == document.location.protocol ? \'https://\' : \'http://\') +\''.$asset_host.'js/pb.js\';';
+            $script .= 'pt.src = (\'https:\' == document.location.protocol ? \'https://\' : \'http://\') +\''.$asset_host.'js/pb.js?src=wordpress\';';
             $script .= 'var s = document.getElementsByTagName(\'script\')[0]; s.parentNode.insertBefore(pt, s);';
             $script .= '})();';
             $script .= '</script>';
