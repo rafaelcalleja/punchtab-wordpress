@@ -103,6 +103,16 @@ if(!class_exists('PunchTab')) :
             add_action('admin_menu', array(&$this, 'menu'));
             // Register sidebar widget
             add_action('widgets_init', 'punchtab_widget_register_widgets');
+
+
+            function admin_scripts() {
+
+                $wp_punchtab_plugin_url = trailingslashit( get_bloginfo('wpurl') ).PLUGINDIR.'/'. dirname( plugin_basename(__FILE__) );
+                wp_register_script( 'punchtab-admin-js', $wp_punchtab_plugin_url.'/wp-punchtab.js');
+                wp_enqueue_script('punchtab-admin-js');
+            }
+
+            add_action( 'admin_print_scripts-settings_page_punchtab-plugin', 'admin_scripts' );
             /*
             * END -Add Hooks
             */
