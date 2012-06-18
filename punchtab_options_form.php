@@ -2,6 +2,50 @@
 // LAYOUT FOR THE SETTINGS/OPTIONS PAGE
 ?>
 
+<style>
+button {
+ background: #8dc63f;
+   background: -moz-linear-gradient(top,  #8dc63f 0%, #8dc63f 50%, #7fb239 51%, #7fb239 100%);
+   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#8dc63f), color-stop(50%,#8dc63f), color-stop(51%,#7fb239), color-stop(100%,#7fb239));
+   background: -webkit-linear-gradient(top,  #8dc63f 0%,#8dc63f 50%,#7fb239 51%,#7fb239 100%);
+   background: -o-linear-gradient(top,  #8dc63f 0%,#8dc63f 50%,#7fb239 51%,#7fb239 100%);
+   background: -ms-linear-gradient(top,  #8dc63f 0%,#8dc63f 50%,#7fb239 51%,#7fb239 100%);
+   background: linear-gradient(top,  #8dc63f 0%,#8dc63f 50%,#7fb239 51%,#7fb239 100%);
+   margin: auto;
+   cursor:pointer;
+   color: #fff;
+   text-shadow: 1px 0px 0 rgba(0,0,0,.4);
+   border-radius: 5px;
+   border: none;
+   font-family: cabin,sans-serif;
+   display: block;
+   font-weight: bold;
+   padding: 5px 15px;
+}
+</style>
+<div id="dialog" title="Get a PunchTab-Powered Loyalty Program" style="display:none;">
+	<p>Incentivize readers to visit your site and share it with their social networks by adding a PunchTab Loyalty Program to your Wordpress page.</p>
+    <p>Sign up for free account by completing the form below or <a href="http://www.punchtab.com/?src=wp" target="_blank">login to PunchTab</a>.</p>
+    <div>
+    <form id="punchtab_signup_form" name="punchtab_signup_form">
+        <div>
+            <label for="domain">Your wordpress site:</label>
+            <input type="text" name="domain" id="domain" value="<?php echo site_url(); ?>"/>
+            <span id="domain_error" style="color:red;"></span>
+        </div>
+        <div style="bottom-padding:20px;">
+            <label for="email">Your Email address:</label>
+            <input type="text" name="email" id="email" />
+            <span id="email_error" style="color:red;"></span>
+        </div>
+        <div style="margin-top:20px;">
+            <button type="submit">Sign up</button>
+        </div>
+    </form>
+
+    </div>
+</div>
+
 <div class="wrap">
     <?php screen_icon(); ?>
     <form action="options.php" method="post" id=<?php echo $this->plugin_id; ?>"_options_form" name=<?php echo $this->plugin_id; ?>"_options_form">
@@ -10,11 +54,11 @@
     <table width="550" border="0" cellpadding="5" cellspacing="5">
     <tr>
         <td width="144" height="26" align="right" style="padding:0 30px 0 0;vertical-align: top;"><label style="font-weight:600" for="<?php echo $this->plugin_id; ?>[key]">Key:</label> </td>
-        <td width="366"><input name="<?php echo $this->plugin_id; ?>[key]" type="text" value="<?php echo $options['key']; ?>" size="40" /></td>
+        <td id="key-holder" width="366" style="padding:5px;"><input placeholder="Got a PunchTab key? Enter it here." id="punchtab_key" name="<?php echo $this->plugin_id; ?>[key]" type="text" value="<?php echo $options['key']; ?>" size="40" /></td>
     </tr>
     <tr>
         <td width="144" height="16" align="right"></td>
-        <td width="366" style="border-bottom: 1px solid #CCC;padding:0 0 10px 0;"><p style="margin-top:3px;font-size:10px;">Signup at <a href="http://www.punchtab.com/?src=wp" target="_blank">PunchTab</a>, if you don't already have a key.</p></td>
+        <td width="366" style="border-bottom: 1px solid #CCC;padding:0 0 10px 0;"><p style="margin-top:3px;font-size:10px;">Need a key? Click <a id="signup">here</a> to sign up or retrieve your key.</p></td>
     </tr>
     <tr>
         <td width="144" height="26" align="right" style="margin-top:20px;padding:0 30px 0 0;vertical-align: top;"><label style="font-weight:600" for="<?php echo $this->plugin_id; ?>[name]">Name:</label> </td>
@@ -35,14 +79,14 @@
         </td>
     </tr>
     <tr id="<?php echo $this->plugin_id; ?>[xpos]">
-        <td width="144" height="26" align="right"><label for="<?php echo $this->plugin_id; ?>[xpos]">Rewards X Pos</label> </td>
+        <td width="144" height="26" align="right"><label for="<?php echo $this->plugin_id; ?>[xpos]">Rewards Ribbon Position</label> </td>
         <td width="366"><select name="<?php echo $this->plugin_id; ?>[xpos]">
             <option value="left" <?php if ($options['xpos'] == 'left') echo 'selected="selected"'; ?>>Left</option>
             <option value="right" <?php if ($options['xpos'] == 'right') echo 'selected="selected"'; ?>>Right</option>
         </select></td>
     </tr>
     <tr id="<?php echo $this->plugin_id; ?>[ypos]">
-        <td width="144" height="26" align="right"><label for="<?php echo $this->plugin_id; ?>[ypos]">Rewards Y Pos</label> </td>
+        <td width="144" height="26" align="right"><label for="<?php echo $this->plugin_id; ?>[ypos]"></label> </td>
         <td width="366" style="border-bottom: 1px solid #CCC;padding:0 0 10px 0;">
         <select name="<?php echo $this->plugin_id; ?>[ypos]">
             <option value="top" <?php if ($options['ypos'] == 'top') echo 'selected="selected"'; ?>>Top</option>
@@ -79,14 +123,14 @@
         </td>
     </tr>
     <tr id="<?php echo $this->plugin_id; ?>[badge_xpos]">
-        <td width="144" height="26" align="right"><label for="<?php echo $this->plugin_id; ?>[badge_xpos]">Badges X Pos</label> </td>
+        <td width="144" height="26" align="right"><label for="<?php echo $this->plugin_id; ?>[badge_xpos]">Badges Bar Position</label> </td>
         <td width="366"><select name="<?php echo $this->plugin_id; ?>[badge_xpos]">
             <option value="left" <?php if ($options['badge_xpos'] == 'left') echo 'selected="selected"'; ?>>Left</option>
             <option value="right" <?php if ($options['badge_xpos'] == 'right') echo 'selected="selected"'; ?>>Right</option>
         </select></td>
     </tr>
     <tr id="<?php echo $this->plugin_id; ?>[badge_ypos]">
-        <td width="144" height="26" align="right"><label for="<?php echo $this->plugin_id; ?>[badge_ypos]">Badges Y Pos</label> </td>
+        <td width="144" height="26" align="right"><label for="<?php echo $this->plugin_id; ?>[badge_ypos]"></label> </td>
         <td width="366" style="border-bottom: 1px solid #CCC;padding:0 0 10px 0;">
         <select name="<?php echo $this->plugin_id; ?>[badge_ypos]">
             <option value="top" <?php if ($options['badge_ypos'] == 'top') echo 'selected="selected"'; ?>>Top</option>
@@ -95,7 +139,7 @@
     </tr>
     <tr>
         <td width="144" height="26" align="right"> </td>
-        <td width="366"><input type="submit" name="submit" value="Save Options" class="button-primary" /></td>
+        <td width="366"><input type="submit" name="submit" value="Save Options" class="button-primary" /><div>By installing PunchTab you agree to the <a href="http://www.punchtab.com/customer-agreement">Customer Agreement</a></div></td>
     </tr>
     </table>
     </form>
@@ -185,6 +229,7 @@ document.ready = function() {
         }
     }
 }
+
 </script>
 
 

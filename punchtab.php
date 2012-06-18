@@ -108,11 +108,19 @@ if(!class_exists('PunchTab')) :
             function admin_scripts() {
 
                 $wp_punchtab_plugin_url = trailingslashit( get_bloginfo('wpurl') ).PLUGINDIR.'/'. dirname( plugin_basename(__FILE__) );
-                wp_register_script( 'punchtab-admin-js', $wp_punchtab_plugin_url.'/wp-punchtab.js');
+                wp_register_script( 'punchtab-admin-js', $wp_punchtab_plugin_url.'/wp-punchtab.js',array('jquery-ui-core','jquery-ui-dialog','jquery-ui-widget','json2'));
                 wp_enqueue_script('punchtab-admin-js');
             }
 
+            function admin_styles() {
+
+                wp_register_style( 'jquery-style', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/themes/smoothness/jquery-ui.css', true);
+                wp_enqueue_style( 'jquery-style' );
+
+            }
+
             add_action( 'admin_print_scripts-settings_page_punchtab-plugin', 'admin_scripts' );
+            add_action( 'admin_print_styles-settings_page_punchtab-plugin', 'admin_styles' );
             /*
             * END -Add Hooks
             */
