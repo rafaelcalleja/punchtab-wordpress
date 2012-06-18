@@ -61,6 +61,14 @@ button {
         <td width="366" style="border-bottom: 1px solid #CCC;padding:0 0 10px 0;"><p style="margin-top:3px;font-size:10px;">Need a key? Click <a id="signup">here</a> to sign up or retrieve your key.</p></td>
     </tr>
     <tr>
+        <td width="144" height="26" align="right" style="margin-top:20px;padding:0 30px 0 0;vertical-align: top;"><label style="font-weight:600" for="<?php echo $this->plugin_id; ?>[language]">Language:</label> </td>
+        <td width="366" style="border-bottom: 1px solid #CCC;padding:0 0 10px 0;">
+            <input id="language" name="<?php echo $this->plugin_id; ?>[language]" type="hidden" value="<?php if (isset($options['language'])) echo $options['language']; ?>" size="5" />
+            <select name="<?php echo $this->plugin_id; ?>[language]" id="language-list">
+            </select>
+        </td>
+    </tr>
+    <tr>
         <td width="144" height="26" align="right" style="margin-top:20px;padding:0 30px 0 0;vertical-align: top;"><label style="font-weight:600" for="<?php echo $this->plugin_id; ?>[name]">Name:</label> </td>
         <td width="366" style="border-bottom: 1px solid #CCC;padding:0 0 10px 0;"><input name="<?php echo $this->plugin_id; ?>[name]" type="text" value="<?php if (isset($options['name'])) echo $options['name']; ?>" size="40" /></td>
     </tr>
@@ -180,6 +188,32 @@ function toggle_badges(visible) {
     }
 }
 
+function get_languages(){
+    var scriptTag = document.createElement('SCRIPT');
+    scriptTag.src = "http://www.punchtab.com/api/v1/languages?callback=populate_languages";
+    document.getElementsByTagName('HEAD')[0].appendChild(scriptTag);
+}
+
+function populate_languages(response){
+    var data, i, select, option, original, original_value;
+    original = document.getElementById('language');
+    original_value = original.value;
+    if (!original_value){
+        original_value = 'en';
+    }
+    data = response.data;
+    select = document.getElementById('language-list');
+    for(i=0; i<data.length;i+=1){
+        option = document.createElement('option');
+        option.setAttribute('value', data[i][0]);
+        option.innerHTML = data[i][1];
+        if (data[i][0] == original_value) {
+            option.setAttribute('selected', 'selected');
+        }
+        select.appendChild(option);
+    }
+}
+
 document.ready = function() {
     <?php
     if (isset($_GET['settings-updated']) && $options['display'] == 'inline') {
@@ -228,6 +262,8 @@ document.ready = function() {
             toggle_badges(false);
         }
     }
+
+    get_languages();
 }
 
 </script>
