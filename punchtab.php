@@ -108,8 +108,8 @@ if(!class_exists('PunchTab')) :
 
             function admin_scripts() {
 
-                $wp_punchtab_plugin_url = trailingslashit( get_bloginfo('wpurl') ).PLUGINDIR.'/'. dirname( plugin_basename(__FILE__) );
-                wp_register_script( 'punchtab-admin-js', $wp_punchtab_plugin_url.'/wp-punchtab.js',array('jquery-ui-core','jquery-ui-dialog','jquery-ui-widget','json2'));
+                $wp_punchtab_plugin_url = plugins_url('/wp-punchtab.js', __FILE__);
+                wp_register_script( 'punchtab-admin-js', $wp_punchtab_plugin_url ,array('jquery-ui-core','jquery-ui-dialog','jquery-ui-widget','json2'));
                 wp_enqueue_script('punchtab-admin-js');
             }
 
