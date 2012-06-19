@@ -3,7 +3,7 @@
     Plugin Name: PunchTab for WordPress
     Plugin URI: http://punchtab.com
     Description: PunchTab rewards for WordPress lets you reward your users for daily visits, Facebook Likes, and leaving comments on your blog. To get started: 1) Get your key by registering your site at <a href="http://www.punchtab.com">PunchTab.com</a>, 2) Enter your key and choose tab placement from the <a href='options-general.php?page=punchtab-plugin'>Settings->PunchTab</a> menu, and 3) Click on the Activate link to the left of this description. To put your own rewards in your catalog log into your <a href="http://www.punchtab.com">PunchTab Dashboard</a>.
-    Version: 1.7
+    Version: 1.8
     Author: PunchTab
     Author URI: http://punchtab.com
 */
