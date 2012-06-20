@@ -30,16 +30,22 @@ function pt_plugin_action_links($links, $file) {
 add_filter('plugin_action_links', 'pt_plugin_action_links', 10, 2);
 */
 
-$monkeyman_Rewrite_Analyzer_file = __FILE__; 
+
+//this is to avoid getting in trouble because of the
+//wordpress bug http://core.trac.wordpress.org/ticket/16953
+$punchtab_file = __FILE__; 
+
 if ( isset( $mu_plugin ) ) { 
-    $monkeyman_Rewrite_Analyzer_file = $mu_plugin; 
+    $punchtab_file = $mu_plugin; 
 } 
 if ( isset( $network_plugin ) ) { 
-    $monkeyman_Rewrite_Analyzer_file = $network_plugin; 
+    $punchtab_file = $network_plugin; 
 } 
 if ( isset( $plugin ) ) { 
-    $monkeyman_Rewrite_Analyzer_file = $plugin; 
+    $punchtab_file = $plugin; 
 } 
+
+$GLOBALS['punchtab_file'] = $punchtab_file;
 
 
 // Make sure class does not exist already.
@@ -120,7 +126,7 @@ if(!class_exists('PunchTab')) :
 
             function admin_scripts() {
 
-                $wp_punchtab_plugin_url = plugins_url($monkeyman_Rewrite_Analyzer_file .'/wp-punchtab.js',__FILE__);
+                $wp_punchtab_plugin_url = plugins_url('wp-punchtab.js', $GLOBALS['punchtab_file']);
                 wp_register_script( 'punchtab-admin-js', $wp_punchtab_plugin_url ,array('jquery-ui-core','jquery-ui-dialog','jquery-ui-widget','json2'));
                 wp_enqueue_script('punchtab-admin-js');
             }
